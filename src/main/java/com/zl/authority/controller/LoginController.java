@@ -55,13 +55,13 @@ public class LoginController {
             // 更新session状态
             mySessionDao.updateStatus(sessionId, MySession.OnlineStatus.on_line);
             // 全局会话sessionId列表，供会话管理
-//            RedisUtil.lpush(ZHENG_UPMS_SERVER_SESSION_IDS, sessionId.toString());
-//            // 默认验证帐号密码正确，创建code
-//            String code = UUID.randomUUID().toString();
-//            // 全局会话的code
-//            RedisUtil.set(ZHENG_UPMS_SERVER_SESSION_ID + "_" + sessionId, code, (int) subject.getSession().getTimeout() / 1000);
-//            // code校验值
-//            RedisUtil.set(ZHENG_UPMS_SERVER_CODE + "_" + code, code, (int) subject.getSession().getTimeout() / 1000);
+            RedisUtil.lpush(ZHENG_UPMS_SERVER_SESSION_IDS, sessionId.toString());
+            // 默认验证帐号密码正确，创建code
+            String code = UUID.randomUUID().toString();
+            // 全局会话的code
+            RedisUtil.set(ZHENG_UPMS_SERVER_SESSION_ID + "_" + sessionId, code, (int) subject.getSession().getTimeout() / 1000);
+            // code校验值
+            RedisUtil.set(ZHENG_UPMS_SERVER_CODE + "_" + code, code, (int) subject.getSession().getTimeout() / 1000);
 
         }
 
